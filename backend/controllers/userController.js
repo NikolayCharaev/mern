@@ -1,6 +1,8 @@
 import bcrypt from 'bcrypt';
 import { validationResult } from 'express-validator';
+import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
+dotenv.config();
 
 import userModal from '../models/userModal.js';
 
@@ -12,7 +14,6 @@ export const register = async (req, res) => {
     const myPassword = req.body.password;
     const salt = await bcrypt.genSalt(10);
     const pass = await bcrypt.hash(myPassword, salt);
-    // const secretToken = process.env.SECRET_TOKEN;
 
     const doc = new userModal({
       email: req.body.email,
@@ -89,9 +90,9 @@ export const login = async (req, res) => {
  * 
 @desc Информация о пользователе
  */
-export const getMe = async (req, res) => {
+export const getMe = async (req, res, next) => {
   try {
-    const user = userModal.findById(req.userId);
+    const user = await userModal.findById(req.userId);
     if (!user) {
       return res.status(404).json({
         message: 'Не удалось найти пользователя',
