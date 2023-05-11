@@ -71,7 +71,11 @@ export const remove = async (req, res) => {
 export const getOne = async (req, res) => {
   try {
     const postId = req.params.id;
-    const result = await postModel.findOneAndUpdate({ _id: postId });
+    const result = await postModel.findOneAndUpdate(
+      { _id: postId },
+      { $inc: { viewsCount: 1 } },
+      { returnDocument: 'after' },
+    );
     if (!result) {
       return res.status(404).json({
         message: 'Статья не найдена',
