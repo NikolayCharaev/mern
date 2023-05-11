@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { getMe, login, register } from './controllers/userController.js';
 import mongoose from 'mongoose';
+import cors from 'cors'
 // import { addPost } from './controllers/postController.js';
 import { create, remove, getOne, update, getAll } from './controllers/postController.js';
 import checkAuth from './utils/checkAuth.js';
@@ -15,6 +16,7 @@ mongoose
 
 const app = express();
 app.use(express.json());
+app.use(cors())
 app.listen(7777, () => {
   console.log('Сервер запущен :)');
 });
