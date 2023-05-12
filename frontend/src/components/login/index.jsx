@@ -1,4 +1,3 @@
-import CustomInput from '../custom/input';
 import CustomButton from '../custom/button';
 import { useForm } from 'react-hook-form';
 const Login = () => {
@@ -42,13 +41,13 @@ const Login = () => {
           placeholder={'введите пароль'}
           {...register('password', {
             required: 'Поле password обязательно для заполнения',
-            minLength : { 
-                value: 4,
-                message : 'пароль должен быть не менее 4 символов'
-            }
+            minLength: {
+              value: 4,
+              message: 'пароль должен быть не менее 4 символов',
+            },
           })}
         />
-        {(errors.password?.type === 'required' || errors.password?.type === 'minLength')&& (
+        {(errors.password?.type === 'required' || errors.password?.type === 'minLength') && (
           <p className="text-sm text-red-500 mt-2">{errors.password.message}</p>
         )}
       </div>
