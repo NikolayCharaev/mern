@@ -33,6 +33,6 @@ app.get('/me', checkAuth, getMe);
 
 app.post('/posts', checkAuth, create);
 app.delete('/posts/:id', checkAuth, remove);
-app.get('/posts/:id', checkAuth, getOne);
+app.get('/posts/:id', getOne);
 app.patch('/posts/:id', checkAuth, update);
 app.get('/posts', getAll);

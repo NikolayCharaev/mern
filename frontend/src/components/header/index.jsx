@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <header className="flex justify-between items-center h-[80px]">
-      <div className="">
+      <div className="bg-blue-600 p-2 rounded hover:bg-blue-500 transition">
         <Link to="/">
           <FcPuzzle className="text-5xl cursor-pointer" />
         </Link>
