@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-
 const CustomInput = ({ placeholder, inputType }) => {
   return (
     <input
