@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-const CustomButton = ({ text }) => {
+const CustomButton = ({ text, styles, onClick }) => {
   return (
-    <button className="bg-blue-500 text-white rounded cursor-pointer py-2 px-4 hover:bg-blue-400 transition">
+    <button onClick={onClick} className={`bg-blue-500 text-white rounded cursor-pointer py-2 px-4 hover:bg-blue-400 transition ${styles}`}>
       {text}
     </button>
   );
@@ -9,5 +9,6 @@ const CustomButton = ({ text }) => {
 
 CustomButton.propTypes = {
   text: PropTypes.string.isRequired,
+  styles : PropTypes.string
 };
 export default CustomButton;

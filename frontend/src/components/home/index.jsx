@@ -11,9 +11,11 @@ const Home = () => {
   const status = useSelector((state) => state.posts.status);
 
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(fetchPosts());
-    }, 1000);
+    if (posts.length <= 0) {
+      setTimeout(() => {
+        dispatch(fetchPosts());
+      }, 1000);
+    }
   }, []);
   return (
     <>
@@ -49,7 +51,7 @@ const Home = () => {
                     </div>
                   </div>
                 </Link>
-              </> 
+              </>
             );
           })}
         </div>

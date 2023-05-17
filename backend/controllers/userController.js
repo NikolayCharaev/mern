@@ -56,7 +56,9 @@ export const login = async (req, res) => {
         message: 'Не удалось найти пользователя',
       });
     }
-    const isValidPass = bcrypt.compare(req.body.password, user._doc.password); // сравнивание паролей
+    const isValidPass = await bcrypt.compare(req.body.password, user._doc.password); // сравнивание паролей
+
+
     if (!isValidPass) {
       return res.status(400).json({
         message: 'Неверный логин или пароль',
