@@ -19,17 +19,27 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit =  (values) => {
     setLoading(true);
-    setTimeout(() => {
-      dispatch(fetchUserData(data));
+    setTimeout( async () => {
+      const data = await dispatch(fetchUserData(values));
+        console.log(data)
       setLoading(false);
+      console.log(data);
+      if (!data.payload) {
+        return;
+      }
+      if ('token' in data.payload) {
+        window.localStorage.setItem('token', data.payload.token);
+      }
+      return data;
     }, 1500);
   };
   const isAuthUser = useSelector(selectIsAuth);
   if (isAuthUser) {
     return <Navigate to="/" />;
   }
+
   return (
     <div className="mt-20">
       {loading && (
@@ -38,7 +48,7 @@ const Login = () => {
           <FaSpinner className="animate-spin w-10 h-10" />
         </div>
       )}
-      {(status === 'error' && !loading) && (
+      {status === 'error' && !loading && (
         <div className=" flex items-center gap-4 justify-center transition">
           <h1>Произошла ошибка. Проверьте правильность введенных данных</h1>
           <BiErrorAlt />

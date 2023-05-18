@@ -29,7 +29,7 @@ const Home = () => {
         <div className="mt-[150px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
           {posts.map((post) => {
             return (
-              <>
+              <div key={post.id}>
                 <Link to={`/posts/${post._id}`}>
                   <div
                     className="bg-cardBg p-10 grid-item flex-grow rounded cursor-pointer active:bg-blue-300 transition"
@@ -51,7 +51,7 @@ const Home = () => {
                     </div>
                   </div>
                 </Link>
-              </>
+              </div>
             );
           })}
         </div>
