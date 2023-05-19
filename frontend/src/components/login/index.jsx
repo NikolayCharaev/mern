@@ -19,20 +19,18 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit =  (values) => {
+  const onSubmit = (values) => {
     setLoading(true);
-    setTimeout( async () => {
+    setTimeout(async () => {
       const data = await dispatch(fetchUserData(values));
-        console.log(data)
       setLoading(false);
-      console.log(data);
       if (!data.payload) {
         return;
       }
       if ('token' in data.payload) {
         window.localStorage.setItem('token', data.payload.token);
-      }else { 
-       return alert('Не удалось авторизоваться')
+      } else {
+        return alert('Не удалось авторизоваться');
       }
       return data;
     }, 1500);

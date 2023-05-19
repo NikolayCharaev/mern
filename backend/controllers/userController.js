@@ -58,7 +58,6 @@ export const login = async (req, res) => {
     }
     const isValidPass = await bcrypt.compare(req.body.password, user._doc.password); // сравнивание паролей
 
-
     if (!isValidPass) {
       return res.status(400).json({
         message: 'Неверный логин или пароль',
