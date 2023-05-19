@@ -31,6 +31,8 @@ const Login = () => {
       }
       if ('token' in data.payload) {
         window.localStorage.setItem('token', data.payload.token);
+      }else { 
+       return alert('Не удалось авторизоваться')
       }
       return data;
     }, 1500);
