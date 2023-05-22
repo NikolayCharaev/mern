@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom';
 import { fetchPosts } from '../../redux/slices/posts';
 import { FaSpinner } from 'react-icons/fa';
 import { AiFillEye } from 'react-icons/ai';
-
+import CustomButton from '../custom/button';
+import OnePost from '../onePost';
 const Home = () => {
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.posts);
-  const status = useSelector((state) => state.posts.status);
 
+
+
+  const status = useSelector((state) => state.posts.status);
   useEffect(() => {
     if (posts.length <= 0) {
       setTimeout(() => {
@@ -28,31 +31,8 @@ const Home = () => {
       {status === 'loaded' && (
         <div className="mt-[150px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
           {posts.map((post) => {
-            return (
-              <div key={post.id}>
-                <Link to={`/posts/${post._id}`}>
-                  <div
-                    className="bg-cardBg p-10 grid-item flex-grow rounded cursor-pointer active:bg-blue-300 transition"
-                    key={post.id}>
-                    <h2 className="text-left inline-block p-4 bg-slate-500 rounded text-white text-2xl mb-4 w-56 overflow-hidden text-ellipsis whitespace-nowrap">
-                      {post.title}
-                    </h2>
-                    <p className="w-[80%] overflow-hidden text-ellipsis whitespace-nowrap">
-                      {post.description}
-                    </p>
-                    <div className="flex items-center gap-1 justify-between my-4 p-2 bg-blue-200 text-black rounded">
-                      <div className="">
-                        <p>{post.user.username}</p>
-                      </div>
-                      <div className="flex gap-1 items-center">
-                        <p>{post.viewsCount}</p>
-                        <AiFillEye />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            );
+         
+            return <OnePost post={post} />;
           })}
         </div>
       )}

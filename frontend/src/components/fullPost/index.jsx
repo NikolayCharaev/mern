@@ -11,7 +11,6 @@ const FullPost = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const { id } = useParams();
-  console.log(data)
   useEffect(() => {
     setTimeout(() => {
       axios

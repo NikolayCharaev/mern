@@ -5,16 +5,20 @@ import { logout, selectIsAuth } from '../../redux/slices/auth';
 import { Link } from 'react-router-dom';
 
 import { fetchPosts } from '../../redux/slices/posts';
+
 const Header = () => {
   const isAuthUser = useSelector(selectIsAuth);
   const dispatch = useDispatch();
   return (
     <header className="flex justify-between items-center h-[80px]">
       <div className="bg-blue-600 p-2 rounded hover:bg-blue-500 transition">
-        <Link to="/">
-          <FcPuzzle className="text-5xl cursor-pointer" onClick={() => { 
-            dispatch(fetchPosts())
-          }} />
+        <Link to="/" className="flex items-center gap-3">
+          <FcPuzzle
+            className="text-5xl cursor-pointer"
+            onClick={() => {
+              dispatch(fetchPosts());
+            }}
+          />
         </Link>
       </div>
       <div className="flex gap-5">
@@ -29,7 +33,7 @@ const Header = () => {
           </>
         ) : (
           <>
-            <Link to="/">
+            <Link to="/newPost">
               <CustomButton text={'написать статью'} />
             </Link>
             <CustomButton
