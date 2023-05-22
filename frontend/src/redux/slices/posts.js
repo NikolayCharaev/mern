@@ -15,6 +15,7 @@ export const fetchRemovePost = createAsyncThunk('/posts/remove', async (id) => {
    axios.delete(`/posts/${id}`);
 });
 
+
 const initialState = {
   posts: [],
   status: 'loading',
@@ -51,6 +52,7 @@ const postSlice = createSlice({
     [fetchRemovePost.pending]: (state, action) => {
       state.posts = state.posts.filter((post) => post._id !== action.meta.arg);
     },
+
   },
 });
 
