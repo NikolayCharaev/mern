@@ -49,7 +49,7 @@ const postSlice = createSlice({
     },
 
     [fetchRemovePost.pending]: (state, action) => {
-      state.posts = state.posts.filter((post) => post._id !== action.payload);
+      state.posts = state.posts.filter((post) => post._id !== action.meta.arg);
     },
   },
 });
